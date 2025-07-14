@@ -2,6 +2,19 @@
 
 /* TAILWIND CONFIG */
 @theme {
+  /* COLORS */
+  --color-c-neutral-0: #ffffff;
+  --color-c-neutral-300: #d2d1d6;
+  --color-c-neutral-500: #8784a4;
+  --color-c-neutral-700: #4b486a;
+  --color-c-neutral-900: #0c082b;
+
+  --color-c-orange-500: #f57261;
+  --color-c-orange-700: #e16151;
+
+  --color-gradient-from: #f37362;
+  --color-gradient-to: #ffffff
+  
   /* FONTS */
   --font-inconsolata: "Inconsolata";
 }
