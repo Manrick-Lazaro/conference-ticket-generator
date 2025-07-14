@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* TAILWIND CONFIG */
+@theme {
+  /* FONTS */
+  --font-inconsolata: "Inconsolata";
+}
+
 /* RESET */
 body,
 p,
