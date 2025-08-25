@@ -83,7 +83,7 @@ export default function Form() {
                     <IconUpload />
                   </div>
 
-                  <span className="text-c-neutral-300/80">
+                  <span className="text-c-neutral-300/80 text-center w-full">
                     Drag and drop or click to upload
                   </span>
 
