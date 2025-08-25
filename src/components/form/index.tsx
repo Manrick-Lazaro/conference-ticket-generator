@@ -139,6 +139,7 @@ export default function Form() {
             placeholder:text-c-neutral-300/80 px-4 mt-2"
             id="input-email"
             name="input-email"
+            type="email"
             placeholder="example@email.com"
           />
         </div>
