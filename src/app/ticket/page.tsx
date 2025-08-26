@@ -1,11 +1,22 @@
+import TicketSVG from "../../../public/images/pattern-ticket.svg";
+import LogoSVG from "../../../public/images/logo-mark.svg";
+import GithubSVG from "../../../public/images/icon-github.svg";
+
 type iticket = {
   image: string;
   fullName: string;
   email: string;
   github: string;
+  id: string;
 };
 
-export default function Ticket({ email, fullName, github, image }: iticket) {
+export default function Ticket({
+  email,
+  fullName,
+  github,
+  image,
+  id,
+}: iticket) {
   return (
     <div className="w-full px-2 flex justify-center items-center">
       <div
@@ -23,6 +34,42 @@ export default function Ticket({ email, fullName, github, image }: iticket) {
           We&apos;ve emailed your ticket to <span>{email}</span> and will send
           update in the run up to the event.
         </p>
+
+        <div className="mt-20 w-full h-fit aspect-[600/280] relative">
+          <TicketSVG className="w-full h-auto absolute inset-0" />
+
+          <div className="flex w-full h-full py-3 pl-3">
+            <div className="flex flex-col w-[83%] justify-between h-full">
+              <div className="flex justify-start gap-2">
+                <LogoSVG className="w-8 h-8 pt-2" />
+                <div className="flex flex-col justify-start ">
+                  <h1 className="text-c-neutral-0 text-2xl">Coding Conf</h1>
+                  <p className="text-c-neutral-300/80 text-sm">
+                    Jan 31, 2025 / Austin, TX
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex justify-start gap-2">
+                <LogoSVG className="w-9 h-12 pt-2" />
+                <div className="flex flex-col justify-start items-start ">
+                  <h1 className="text-c-neutral-0 text-lg">Jonatan Kristof</h1>
+                  <p
+                    className="text-c-neutral-300/80 text-xs flex 
+                  justify-center gap-1"
+                  >
+                    <GithubSVG className="w-5 h-5" />
+                    {github}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-[17%] flex items-center justify-center">
+              <p className="text-c-neutral-300/60 rotate-90">#{id}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
