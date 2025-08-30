@@ -26,15 +26,28 @@ export default function Ticket() {
           text-lg mobile-sm:text-xl mobile:text-2xl tablet:text-3xl
           "
         >
-          Congrats, <span>{data?.fullName}!</span> Your ticket is ready.
+          Congrats,{" "}
+          <span
+            className="bg-gradient-to-r bg-clip-text text-transparent
+          from-c-orange-500  to-c-neutral-0"
+          >
+            {data?.fullName}!
+          </span>{" "}
+          Your ticket is ready.
         </h1>
 
         <p
           className="text-center text-c-neutral-300 
         text-sm mobile-sm:text-base mobile:text-lg tablet:text-xl"
         >
-          We&apos;ve emailed your ticket to <span>{data?.email}</span> and will
-          send update in the run up to the event.
+          We&apos;ve emailed your ticket to{" "}
+          <span
+            className="
+          text-c-orange-500"
+          >
+            {data?.email}
+          </span>{" "}
+          and will send update in the run up to the event.
         </p>
 
         <div className="mt-20 w-full h-fit aspect-[600/280] relative">
