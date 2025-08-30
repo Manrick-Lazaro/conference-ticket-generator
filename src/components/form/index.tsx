@@ -33,11 +33,14 @@ export default function Form() {
   };
 
   const onSubmit: SubmitHandler<iticket> = (data: iticket): void => {
+    const randomID = Math.floor(Math.random() * 99999) + 1;
+
     const ticketData = {
-    ...data,
-    image: preview || "" 
-  };
-    
+      ...data,
+      image: preview || "",
+      id: randomID,
+    };
+
     setTicket(ticketData);
     router.push("/ticket");
   };
