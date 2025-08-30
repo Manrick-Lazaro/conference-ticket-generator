@@ -22,13 +22,17 @@ export default function Ticket() {
       justify-center items-center max-w-[500px] px-2"
       >
         <h1
-          className="text-center font-bold text-c-neutral-0 text-3xl
-            mt-13 mb-7"
+          className="text-center font-bold text-c-neutral-0 mt-13 mb-7
+          text-lg mobile-sm:text-xl mobile:text-2xl tablet:text-3xl
+          "
         >
           Congrats, <span>{data?.fullName}!</span> Your ticket is ready.
         </h1>
 
-        <p className="text-center text-xl text-c-neutral-300">
+        <p
+          className="text-center text-c-neutral-300 
+        text-sm mobile-sm:text-base mobile:text-lg tablet:text-xl"
+        >
           We&apos;ve emailed your ticket to <span>{data?.email}</span> and will
           send update in the run up to the event.
         </p>
@@ -39,35 +43,62 @@ export default function Ticket() {
           <div className="flex w-full h-full py-3 pl-3">
             <div className="flex flex-col w-[83%] justify-between h-full">
               <div className="flex justify-start gap-2">
-                <LogoSVG className="w-8 h-8 pt-2" />
+                <LogoSVG
+                  className="pt-2 
+                
+                w-6 h-6 mobile-sm:w-8 mobile-sm:h-8 mobile:w-11 mobile:h-11 
+                tablet:w-14 tablet:h-14"
+                />
                 <div className="flex flex-col justify-start ">
-                  <h1 className="text-c-neutral-0 text-2xl">Coding Conf</h1>
-                  <p className="text-c-neutral-300/80 text-sm">
+                  <h1
+                    className="text-c-neutral-0 
+                    
+                    text-sm mobile-sm:text-lg mobile:text-xl tablet:text-2xl"
+                  >
+                    Coding Conf
+                  </h1>
+                  <p
+                    className="text-c-neutral-300/80 
+                    
+                    text-[0.50rem] mobile-sm:text-xs mobile:text-sm tablet:text-base"
+                  >
                     Jan 31, 2025 / Austin, TX
                   </p>
                 </div>
               </div>
 
               <div className="flex justify-start gap-2">
-                {/* <LogoSVG className="w-9 h-12 pt-2" /> */}
-                <div className="bg-c-neutral-700/60 px-0.5 py-0.5 rounded-xl">
-                  <Image
-                    src={
-                      data !== null ? data.image : "/images/anonymous_user.png"
-                    }
-                    alt="preview"
-                    width={400}
-                    height={400}
-                    className="rounded-xl w-12 h-12 object-cover"
-                  />
-                </div>
+                <Image
+                  src={
+                    data !== null ? data.image : "/images/anonymous_user.png"
+                  }
+                  alt="preview"
+                  width={200}
+                  height={200}
+                  className="object-cover rounded-lg
+                  
+                  w-7 h-7 mobile-sm:w-9 mobile-sm:h-9 mobile:w-12 mobile:h-12
+                  tablet:w-15 tablet:h-15"
+                />
+
                 <div className="flex flex-col justify-start items-start ">
-                  <h1 className="text-c-neutral-0 text-lg">{data?.fullName}</h1>
-                  <p
-                    className="text-c-neutral-300/80 text-xs flex 
-                  justify-center gap-1"
+                  <h1
+                    className="text-c-neutral-0 
+                  
+                  text-xs mobile-sm:text-sm mobile:text-base tablet:text-lg"
                   >
-                    <GithubSVG className="w-5 h-5" />
+                    {data?.fullName}
+                  </h1>
+                  <p
+                    className="text-c-neutral-300/80 flex 
+                  justify-center gap-1 
+                  
+                  text-xs mobile-sm:text-sm mobile:text-base"
+                  >
+                    <GithubSVG
+                      className="w-4 h-4 mobile-sm:w-5 
+                    mobile-sm:h-5 mobile:w-7 mobile:h-7"
+                    />
                     {data?.github}
                   </p>
                 </div>
@@ -75,7 +106,12 @@ export default function Ticket() {
             </div>
 
             <div className="w-[17%] flex items-center justify-center">
-              <p className="text-c-neutral-300/60 rotate-90">#{data?.id}</p>
+              <p
+                className="text-c-neutral-300/60 rotate-90
+              text-lg mobile-sm:text-xl mobile:text-2xl tablet:text-3xl"
+              >
+                #{data?.id}
+              </p>
             </div>
           </div>
         </div>
