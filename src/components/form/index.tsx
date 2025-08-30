@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import IconUpload from "../../../public/images/icon-upload.svg";
 import IconInfo from "../../../public/images/icon-info.svg";
 import { useTicketStore } from "@/hooks/ticket";
+import schema from "./schema";
 
 export type iticket = {
   image: string;
@@ -19,7 +21,9 @@ export type iticket = {
 
 export default function Form() {
   const [preview, setPreview] = useState<string | null>(null);
-  const { handleSubmit, register } = useForm<iticket>();
+  const { handleSubmit, register } = useForm({
+    resolver: yupResolver(schema),
+  });
   const router = useRouter();
   const setTicket = useTicketStore((s) => s.setTicket);
 
@@ -32,7 +36,8 @@ export default function Form() {
     }
   };
 
-  const onSubmit: SubmitHandler<iticket> = (data: iticket): void => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function onSubmit(data: any): void {
     const randomID = Math.floor(Math.random() * 99999) + 1;
 
     const ticketData = {
@@ -43,7 +48,7 @@ export default function Form() {
 
     setTicket(ticketData);
     router.push("/ticket");
-  };
+  }
 
   return (
     <div className="w-full flex items-center justify-center px-2">
@@ -96,7 +101,7 @@ export default function Form() {
                       Change image
                       <input
                         id="file-upload"
-                        type="file"
+                        type="fileList"
                         className="hidden"
                         accept="image/png, image/jpg"
                         {...register("image")}
@@ -122,7 +127,7 @@ export default function Form() {
                     <input
                       className="hidden"
                       id="input-file"
-                      type="file"
+                      type="fileList"
                       accept="image/png, image/jpg"
                       {...register("image")}
                       onChange={handleFileChange}
