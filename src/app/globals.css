@@ -17,7 +17,9 @@
   --color-gradient-to: #ffffff;
 
   /* Breakpoints */
+  --breakpoint-tablet: 30rem;
   --breakpoint-mobile: 25rem;
+  --breakpoint-mobile-sm: 20rem;
 }
 
 /* RESET */
