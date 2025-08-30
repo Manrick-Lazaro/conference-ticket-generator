@@ -1,13 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 import IconUpload from "../../../public/images/icon-upload.svg";
 import IconInfo from "../../../public/images/icon-info.svg";
 import Image from "next/image";
 
+export type iticket = {
+  image: string;
+  fullName: string;
+  email: string;
+  github: string;
+  id?: number;
+};
+
 export default function Form() {
   const [preview, setPreview] = useState<string | null>(null);
+  const { handleSubmit, register } = useForm<iticket>();
+  const router = useRouter();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -18,9 +30,15 @@ export default function Form() {
     }
   };
 
+  const onSubmit: SubmitHandler<iticket> = (data: iticket): void => {
+    const serialized = encodeURIComponent(JSON.stringify(data));
+    router.push(`/ticket?data=${serialized}`);
+  };
+
   return (
     <div className="w-full flex items-center justify-center px-2">
       <form
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col h-fit w-full px-2 gap-6
       justify-center items-center max-w-[500px]"
       >
@@ -68,10 +86,10 @@ export default function Form() {
                       Change image
                       <input
                         id="file-upload"
-                        name="file-upload"
                         type="file"
                         className="hidden"
                         accept="image/png, image/jpg"
+                        {...register("image")}
                         onChange={handleFileChange}
                       />
                     </label>
@@ -94,9 +112,9 @@ export default function Form() {
                     <input
                       className="hidden"
                       id="input-file"
-                      name="input-file"
                       type="file"
                       accept="image/png, image/jpg"
+                      {...register("image")}
                       onChange={handleFileChange}
                     />
                   </label>
@@ -123,7 +141,7 @@ export default function Form() {
             className="border border-c-neutral-500/60 w-full py-3 rounded-xl bg-c-neutral-700/30
             mt-2"
             id="input-full-name"
-            name="input-full-name"
+            {...register("fullName")}
           />
         </div>
 
@@ -138,9 +156,9 @@ export default function Form() {
             className="border border-c-neutral-500/60 w-full py-3 rounded-xl bg-c-neutral-700/30
             placeholder:text-c-neutral-300/80 px-4 mt-2"
             id="input-email"
-            name="input-email"
             type="email"
             placeholder="example@email.com"
+            {...register("email")}
           />
         </div>
 
@@ -155,14 +173,15 @@ export default function Form() {
             className="border border-c-neutral-500/60 w-full py-3 rounded-xl bg-c-neutral-700/30
             placeholder:text-c-neutral-300/80 px-4 mt-2"
             id="input-github"
-            name="input-github"
             placeholder="@yourusername"
+            {...register("github")}
           />
         </div>
 
         <button
           className="bg-c-orange-500 w-full py-3 rounded-xl text-c-neutral-900 
         font-bold text-[1.05rem]"
+          type="submit"
         >
           Generate My Ticket
         </button>
