@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 import IconUpload from "../../../public/images/icon-upload.svg";
 import IconInfo from "../../../public/images/icon-info.svg";
-import Image from "next/image";
+import { useTicketStore } from "@/hooks/ticket";
 
 export type iticket = {
   image: string;
@@ -20,6 +21,7 @@ export default function Form() {
   const [preview, setPreview] = useState<string | null>(null);
   const { handleSubmit, register } = useForm<iticket>();
   const router = useRouter();
+  const setTicket = useTicketStore((s) => s.setTicket);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -31,8 +33,13 @@ export default function Form() {
   };
 
   const onSubmit: SubmitHandler<iticket> = (data: iticket): void => {
-    const serialized = encodeURIComponent(JSON.stringify(data));
-    router.push(`/ticket?data=${serialized}`);
+    const ticketData = {
+    ...data,
+    image: preview || "" 
+  };
+    
+    setTicket(ticketData);
+    router.push("/ticket");
   };
 
   return (
